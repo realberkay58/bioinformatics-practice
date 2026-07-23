@@ -1,0 +1,9 @@
+3D PROTEIN STRUCTURE ANALYSIS: 1HHO (Human Hemoglobin)
+=======================================================
+Total Chains: 2
+Total Residues (Amino Acids/Ligands/Water): 401
+Total Atoms: 2396
+
+Chain Breakdown:
+- Chain A: 192 residues
+- Chain B: 209 residues

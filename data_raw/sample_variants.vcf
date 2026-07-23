@@ -1,0 +1,10 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##contig=<ID=chr1,length=248956422>
+##contig=<ID=chr2,length=242193529>
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr1	10000	rs123	A	G	50	PASS	DP=100
+chr1	20000	.	C	T	15	.	DP=50
+chr2	15000	rs456	G	C	90	PASS	DP=120
+chr2	25000	.	T	A	8	.	DP=30
+chr2	35000	rs789	A	T	60	PASS	DP=200

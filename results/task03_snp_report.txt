@@ -1,0 +1,8 @@
+VARYANT (SNP) ANALÝZ RAPORU
+==============================
+Ýncelenen Toplam Varyant: 5
+Kalite Skoru Yüksek (Güvenilir) Varyant: 3
+
+Kromozomlara Göre Kaliteli Varyant Daðýlýmý:
+- chr1: 1 adet SNP
+- chr2: 2 adet SNP

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3D Protein Viewer - 1HHO</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+    <style>
+        body { margin: 0; padding: 0; background-color: #2c3e50; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        #header { color: white; padding: 15px; text-align: center; }
+        #header h2 { margin: 0 0 5px 0; }
+        #header p { margin: 0; color: #bdc3c7; font-size: 14px; }
+        
+        #viewer_container { 
+            width: 95vw; 
+            height: 75vh; 
+            margin: 0 auto; 
+            position: relative;
+            border: 3px solid #34495e; 
+            border-radius: 10px; 
+            background-color: white; 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        #info_card {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(44, 62, 80, 0.95);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            border-left: 5px solid #e74c3c;
+            min-width: 200px;
+        }
+        #info_card h3 { margin: 0 0 10px 0; color: #e74c3c; border-bottom: 1px solid #7f8c8d; padding-bottom: 5px; }
+        #info_card p { margin: 5px 0; font-size: 15px; }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h2>🧬 Smart 3D Viewer: Human Hemoglobin (1HHO)</h2>
+        <p><b>Left Click + Drag:</b> Rotate | <b>Scroll:</b> Zoom | <span style="color:#e74c3c; font-weight:bold;">CLICK on any part of the protein</span> to highlight the residue!</p>
+    </div>
+    
+    <div id="viewer_container">
+        <div id="info_card">
+            <h3>Molecule Details</h3>
+            <p id="info_chain"></p>
+            <p id="info_res"></p>
+            <p id="info_atom"></p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let element = $('#viewer_container');
+            let viewer = $3Dmol.createViewer(element, {backgroundColor: 'white'});
+            
+            $3Dmol.download("pdb:1HHO", viewer, {}, function() {
+                // Varsayılan görünüm: Tüm protein spektrum (gökkuşağı) renginde
+                viewer.setStyle({}, {cartoon: {color: 'spectrum'} });
+                
+                viewer.setClickable({}, true, function(atom, viewer, event, container) {
+                    
+                    // 1. Bilgi kartını güncelle
+                    $('#info_chain').html('<b>Chain:</b> ' + atom.chain);
+                    $('#info_res').html('<b>Residue:</b> ' + atom.resn + ' (Position: ' + atom.resi + ')');
+                    $('#info_atom').html('<b>Atom:</b> ' + atom.atom + ' (' + atom.elem + ')');
+                    $('#info_card').fadeIn();
+                    
+                    // 2. Önce tüm proteini varsayılan renklere sıfırla (önceki tıklamayı temizle)
+                    viewer.setStyle({}, {cartoon: {color: 'spectrum'} });
+                    
+                    // 3. SADECE tıklanan amino asidi (residue) seç ve parlat
+                    // O kısmı parlak kırmızı yap ve atomik çubuk (stick) yapısını görünür kıl
+                    viewer.setStyle(
+                        {chain: atom.chain, resi: atom.resi}, 
+                        {
+                            cartoon: {color: '#e74c3c', thickness: 0.5}, 
+                            stick: {color: '#e74c3c', radius: 0.25}
+                        }
+                    );
+                    
+                    viewer.render();
+                });
+                
+                viewer.zoomTo();
+                viewer.render();
+            });
+        });
+    </script>
+</body>
+</html>

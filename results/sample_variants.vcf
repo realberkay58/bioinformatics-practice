@@ -1,0 +1,16 @@
+##fileformat=VCFv4.2
+##source=SimulatedData
+##contig=<ID=chr1,length=248956422>
+##contig=<ID=chr2,length=242193529>
+##contig=<ID=chr3,length=198295559>
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##INFO=<ID=GENE,Number=1,Type=String,Description="Overlapping Gene">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr1	10177	rs367896724	A	AC	50.5	PASS	DP=100;GENE=DDX11L1
+chr1	10352	rs555500075	T	TA	20.0	FAIL	DP=80;GENE=DDX11L1
+chr1	69091	rs532656360	A	C	99.9	PASS	DP=120;GENE=OR4F5
+chr2	15000	.	G	A	15.5	PASS	DP=40;GENE=WASH7P
+chr2	23040	.	C	T	45.0	PASS	DP=200;GENE=WASH7P
+chr3	55000	.	T	G	85.2	PASS	DP=150;GENE=TRIM71
+chr3	56000	.	C	A	10.0	FAIL	DP=30;GENE=TRIM71
+chr3	57000	.	G	C	65.4	PASS	DP=90;GENE=TRIM71

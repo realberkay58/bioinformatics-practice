@@ -1,0 +1,16 @@
+ÝNSAN VE FARE HEMOGLOBÝN ALPHA HÝZALAMASI
+=============================================
+
+target            0 MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHG
+                  0 ||||..||.|.||||||.|.|..|||||||||||.|||||||||||||.|||||||||||
+query             0 MVLSGEDKSNIKAAWGKIGGHGAEYGAEALERMFASFPTTKTYFPHFDVSHGSAQVKGHG
+
+target           60 KKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTP
+                 60 |||||||..|..|.||.|.||||||||||||||||||||||||||||||||.|.||.|||
+query            60 KKVADALASAAGHLDDLPGALSALSDLHAHKLRVDPVNFKLLSHCLLVTLASHHPADFTP
+
+target          120 AVHASLDKFLASVSTVLTSKYR 142
+                120 |||||||||||||||||||||| 142
+query           120 AVHASLDKFLASVSTVLTSKYR 142
+
+Final Hizalama Skoru: 122.0

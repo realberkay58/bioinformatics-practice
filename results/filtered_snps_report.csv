@@ -1,0 +1,5 @@
+Chromosome,Position,Reference,Alternate,Quality,Gene_Region
+chr1,69091,A,C,99.9,OR4F5
+chr2,23040,C,T,45.0,WASH7P
+chr3,55000,T,G,85.2,TRIM71
+chr3,57000,G,C,65.4,TRIM71

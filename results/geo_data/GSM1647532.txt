@@ -1,0 +1,134 @@
+^SAMPLE = GSM1647532
+!Sample_title = PBMCs sample_TR019
+!Sample_geo_accession = GSM1647532
+!Sample_status = Public on Jul 14 2015
+!Sample_submission_date = Mar 31 2015
+!Sample_last_update_date = Jul 14 2015
+!Sample_type = RNA
+!Sample_channel_count = 1
+!Sample_source_name_ch1 = Peripheral blood mononuclear cells (PBMCs) 
+!Sample_organism_ch1 = Homo sapiens
+!Sample_taxid_ch1 = 9606
+!Sample_characteristics_ch1 = time: DAY7
+!Sample_characteristics_ch1 = site: Cali
+!Sample_characteristics_ch1 = individual: 310N
+!Sample_molecule_ch1 = total RNA
+!Sample_extract_protocol_ch1 = Whole blood mRNA was extracted using TempusTM Blood RNA Tube isolation kits provided by the manufacturer Applied Biosystems, and the quality was determined based on the Agilent Bioanalyzer 2100 RNA Integrity score (RIN).
+!Sample_label_ch1 = EvaGreen
+!Sample_label_protocol_ch1 = The qRT-PCR was completed in three steps. (1) Total whole blood RNA was converted to single stranded cDNA using polyT priming of reverse transcription, (2) the 96 targeted genes were pre-amplified in a single 13-cycle PCR reaction for each sample following conditions outlined in the manufacturer’s protocol, by combining 100 ng cDNA with the pooled primers and EvaGreen Pre-Amp Mastermix (Fluidigm BioMark™), (3) exonuclease step was perform to clean any unincorporated primers  and (4) qPCR reactions were performed for each sample and individual gene on each sample on a 96×96 array with 30 amplification cycles. Average Ct value was calculated at a point in which every reaction is in the exponential phase to ensure accuracy and precision of amplification.
+!Sample_hyb_protocol = n/a
+!Sample_scan_protocol = n/a
+!Sample_description = Test
+!Sample_data_processing = We subtracted each Ct from 30, setting missing values to 0.  Since small Ct values correspond to high transcript abundance, this subtraction yields values ranging from 0 (no expression) to 30 (very high abundance). And Then mean normalization was perform using JMP genomics software.  The non-normalized data, normalized data and fold-change data are available on the series record. Fold-changes were calculated by dividing the non-normalized test values by the non-normalized control value. Normalization was not performed for the control sample data.
+!Sample_platform_id = GPL19957
+!Sample_contact_name = Monica,L.,Rojas-Peña
+!Sample_contact_email = monica.rojas@gatech.edu
+!Sample_contact_laboratory = Center for Integrative Genomics (CIG)
+!Sample_contact_department = School of Biology
+!Sample_contact_institute = Georgia Institute of Technology
+!Sample_contact_address = 310 Ferst Dr.
+!Sample_contact_city = Atlanta
+!Sample_contact_state = GA
+!Sample_contact_zip/postal_code = 30332
+!Sample_contact_country = USA
+!Sample_supplementary_file = NONE
+!Sample_series_id = GSE67469
+!Sample_series_id = GSE67470
+!Sample_data_row_count = 92
+#ID_REF = 
+#VALUE = normalized signal
+!sample_table_begin
+ID_REF	VALUE
+ILMN_2368292	-0.329886738
+ILMN_1778681	-3.469790648
+ILMN_2357438	-2.640548698
+ILMN_1782704	-2.691249378
+ILMN_2368718	-3.937982688
+ILMN_2313889	-2.704178598
+ILMN_1729749	1.146060202
+ILMN_1811049	-1.512923308
+ILMN_1772809	4.289457002
+ILMN_2378048	4.532613462
+ILMN_1804148	2.250270902
+ILMN_1704446	-6.686986538
+ILMN_2388547	1.473805972
+ILMN_1689836	4.022949482
+ILMN_1674780	3.666995232
+ILMN_1783852	2.691616762
+ILMN_2407851	-10.0277839
+ILMN_1737205	-0.865363078
+ILMN_1700147	-1.986339258
+ILMN_1759155	1.514900102
+ILMN_2098616	0.263756942
+ILMN_1729487	3.434608452
+ILMN_1657871	1.502896832
+ILMN_1792997	-3.034568888
+ILMN_2357272	3.343801052
+ILMN_1778723	1.360916192
+ILMN_1808047	2.667281222
+ILMN_2066348	2.338216372
+ILMN_1726720	1.361771262
+ILMN_1666049	0.674918592
+ILMN_1657204	0.055979122
+ILMN_1748797	3.432170272
+ILMN_1799467	2.118470142
+ILMN_2349061	1.833175952
+ILMN_2374293	0.848205112
+ILMN_1681845	3.475070442
+ILMN_1682316	0.489809402
+ILMN_1670238	-4.052871498
+ILMN_2389844	3.102155262
+ILMN_1715068	0.789535812
+ILMN_1692145	-5.342990908
+ILMN_1807919	0.151170872
+ILMN_1683450	-5.048986168
+ILMN_1739428	3.361531952
+ILMN_1734878	0.577378962
+ILMN_1723004	-1.555265308
+ILMN_1801984	2.145535912
+ILMN_2369785	2.270423572
+ILMN_1751816	1.963399332
+ILMN_1662358	1.562555692
+ILMN_1722218	2.240807392
+ILMN_1708151	-0.943147338
+ILMN_2272074	2.436496642
+ILMN_2381603	1.084596872
+ILMN_2054554	-2.867679878
+ILMN_1784678	0.424288322
+ILMN_1814397	-11.69870137
+ILMN_1801939	-2.269231358
+ILMN_1668417	4.522407952
+ILMN_2291954	2.700286352
+ILMN_1700306	0.249641662
+ILMN_2309245	-17.53251138
+ILMN_1700628	1.900033712
+ILMN_1806040	-1.190552278
+ILMN_1775235	-1.720405048
+ILMN_2379788	3.575674002
+ILMN_1670305	-0.345899098
+ILMN_1745397	1.114463862
+ILMN_2044226	0.836434202
+ILMN_1668277	-1.391468888
+ILMN_1700834	-1.813549058
+ILMN_2372974	3.068705322
+ILMN_1680652	1.931127412
+ILMN_1662524	3.522914322
+ILMN_1664063	0.265409412
+ILMN_1733696	0.619684792
+ILMN_1680279	-1.884744818
+ILMN_1803742	1.950646272
+ILMN_1792922	5.407491982
+ILMN_1806037	-2.363349258
+ILMN_2340217	5.886457812
+ILMN_1795228	2.792388492
+ILMN_1791771	3.018102892
+ILMN_2183216	-10.91341099
+ILMN_1766165	6.565674042
+ILMN_1811927	-3.738086478
+ILMN_2330495	1.968323902
+ILMN_2106658	-2.630417898
+ILMN_2312275	2.638983722
+ILMN_1713752	3.864529102
+ILMN_1691071	-17.95555551
+ILMN_2122374	1.847451962
+!sample_table_end

@@ -361,14 +361,35 @@ def fetch_clinvar_myvariant(gene_symbol):
     except: return []
 @st.cache_data
 def fetch_pdb_from_uniprot(gene_symbol):
+    print(f"📡 Fetching 3D PDB ID via MyGene for: {gene_symbol}")
+    
+    # UniProt yerine, gen isimlerini çok daha iyi çözen MyGene API'sini kullanıyoruz
+    api_url = f"https://mygene.info/v3/query?q=symbol:{gene_symbol}&fields=pdb&species=human"
+    
     try:
-        url = f"https://rest.uniprot.org/uniprotkb/search?query=gene_exact:{gene_symbol}+AND+organism_id:9606&format=tsv&fields=xref_pdb"
-        req = urllib.request.Request(url)
-        with urllib.request.urlopen(req) as response:
-            data = response.read().decode('utf-8').splitlines()
-            if len(data) > 1 and data[1].strip(): return data[1].split(';')[0].strip()
-    except: return None
-    return None
+        response = requests.get(api_url)
+        if response.status_code == 200:
+            data = response.json()
+            
+            for hit in data.get("hits", []):
+                pdb_data = hit.get("pdb", [])
+                
+                # Eğer PDB verisi bulunduysa
+                if pdb_data:
+                    # Bazen liste (birden fazla PDB kodu), bazen tek bir metin döner
+                    if isinstance(pdb_data, list):
+                        return pdb_data[0].upper()
+                    elif isinstance(pdb_data, str):
+                        return pdb_data.upper()
+                        
+            print(f"⚠️ No PDB structure documented for {gene_symbol}.")
+            return None
+        else:
+            return None
+            
+    except Exception as e:
+        print(f"❌ PDB API Error: {e}")
+        return None
 # ==========================================
 # MAIN UI
 # ==========================================
@@ -417,7 +438,7 @@ st.markdown("""
 
 st.header("⚙️ Patient Data Setup")
 
-data_path = "results/task05_differential_expression.csv"
+data_path = "results/task05_clinical_filtered.csv"
 
 if not os.path.exists(data_path):
     st.error("Data file not found! Check 'results/task05_differential_expression.csv'")
@@ -728,7 +749,44 @@ with tab4:
                 geo_data = fetch_geo_metadata(gse_input)
                 if isinstance(geo_data, pd.DataFrame): 
                     st.success(f"Successfully retrieved cohort data containing {len(geo_data)} patient records.")
-                    st.dataframe(geo_data, use_container_width=True)
+                    
+                    clean_geo = geo_data.copy()
+                    
+                    # 1. GSM satır başlıklarını sütuna çevir
+                    clean_geo.reset_index(inplace=True)
+                    clean_geo.rename(columns={'index': 'Sample_ID (GSM)'}, inplace=True)
+                    
+                    # 2. Tam olarak istediğin sütunları ve sırayı belirle
+                    target_columns = [
+                        "Sample_ID (GSM)", 
+                        "title", 
+                        "type", 
+                        "characteristics_ch1.0.Gender", 
+                        "characteristics_ch1.1.Age at Diagnosis", 
+                        "characteristics_ch1.2.Cigarette Smoking Status", 
+                        "supplementary_file" 
+                    ]
+                    
+                    # Ufak bir hack: NCBI bazı tablolarda dosya adını "supplementary_file_1" yapar. 
+                    # Eğer öyleyse onu da yakalayalım ki dosya eksik kalmasın.
+                    if "supplementary_file_1" in clean_geo.columns and "supplementary_file" not in clean_geo.columns:
+                        target_columns[-1] = "supplementary_file_1"
+                    
+                    # Tabloda olmayan bir sütun varsa kodu çökertmemek için sadece var olanları filtrele
+                    final_columns = [col for col in target_columns if col in clean_geo.columns]
+                    clean_geo = clean_geo[final_columns]
+                    
+                    # 3. Dosya linkini tıklanabilir buton/link formatına çevir
+                    col_config = {}
+                    for col in final_columns:
+                        if "supplementary" in col.lower():
+                            col_config[col] = st.column_config.LinkColumn(
+                                "🔗 Supplementary File", 
+                                help="Click to download the raw data file from NCBI GEO"
+                            )
+                    
+                    # 4. En temiz haliyle ekrana bas
+                    st.dataframe(clean_geo, use_container_width=True, hide_index=True, column_config=col_config)
                 else: 
                     st.error("❌ Failed to fetch data. Please ensure the GSE number is correct and you have internet access.")
     else:
@@ -755,6 +813,6 @@ with tab5:
         with st.expander("3D Protein Structure", expanded=True):
             pdb_id = fetch_pdb_from_uniprot(selected_gene)
             if pdb_id: components.html(get_3d_html(pdb_id), height=400)
-            else: st.warning("No PDB structure found in UniProt for this specific gene.")
+            else: st.warning("🧬 No experimentally solved 3D structure (PDB) is available for this protein yet. (Some proteins are too complex or flexible to be crystallized).")
     else:
         st.info("👈 Please select a gene from the table.")
